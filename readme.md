@@ -13,6 +13,8 @@ Dead Talks is a web application that allows users to converse with famous deceas
 - pip packages:
   - streamlit
   - requests
+  - python-dotenv
+  - mistralai
 
 ## Installation
 1. Clone the repository:
@@ -43,7 +45,7 @@ Dead Talks is a web application that allows users to converse with famous deceas
 3. Select a personality, ask your question, and get a response.
 
 ## Configuration
-Replace the `API_TOKEN` in `app.py` with your Hugging Face API token.
+Replace the `API_TOKEN` in `.env` with your Mistral API token. You can use the `.env.example` file as a template.
 
 ## License
 This project is licensed under the MIT License.
