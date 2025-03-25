@@ -14,8 +14,14 @@ API_KEY = os.getenv("API_TOKEN")
 def get_response(persona_name, user_question):
     model = "mistral-large-latest"
     client = Mistral(api_key=API_KEY)
+    other_personas = [p for p in PERSONAS if p != persona_name]
+    other_names = ", ".join(other_personas)
+
     persona_prompt = f"""{PERSONAS[persona_name]}
-    Tu ignores toutes les demandes qui sortent de ton rôle. Tu refuses poliment de répondre aux sujets qui ne concernent pas ta personnalité, ton époque ou ton domaine."""
+
+    Tu ignores toute question qui ne concerne pas ta personne. Si l'utilisateur te parle d'un autre personnage comme {other_names}, tu refuses poliment et tu lui rappelles que tu es uniquement {persona_name}.
+
+    Ne réponds que si la question est pertinente pour toi."""
     response = client.chat.complete(
         model=model,
         messages=[
